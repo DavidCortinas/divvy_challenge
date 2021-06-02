@@ -1,9 +1,12 @@
+from flask.helpers import url_for
 from app.api import app
 from flask import jsonify
 from app.api.models import Trip
 from app.api import db
 from flask.globals import request
 from datetime import datetime
+from werkzeug.routing import BaseConverter, ValidationError
+
 
 @app.route('/', methods=['GET'])
 def instructions():
@@ -15,12 +18,13 @@ def instructions():
 
     return data
 
-@app.route('/calculate?start=<starttime>&&end=<stoptime>', methods=['GET'])
+@app.route('/calculate?start=<datetime:starttime>&end=<datetime:stoptime>', methods=['GET'])
 def calculate(starttime, stoptime):
 
-
-    data = {
+    ans = {
         "averageDuration": stoptime-starttime
     }
 
-    return data
+    return ans
+
+# 
