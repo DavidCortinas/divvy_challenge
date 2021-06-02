@@ -1,15 +1,15 @@
-from app import api
+from app.api import app
 from flask import jsonify
 from app.api.models import Trip
 from app.api import db
 from flask.globals import request
 
-@api.route('/', methods=['GET'])
+@app.route('/', methods=['GET'])
 def calculate():
-    t = Trip()
-    data = {
-        'start': request.get_json['starttime'],
-        'end': request.get_json['stoptime'],
-    }
+    # data = {
+    #     "This": "Works"
+    # }
+
+    data = "Navigate to '.../calculate' and add the following query parameters: start (i.e. '2013-06-28'), end (i.e. '2013-06-30)"
 
     return data
